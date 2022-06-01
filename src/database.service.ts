@@ -20,9 +20,9 @@ export async function connectToDatabase () {
     await client.connect();
         
     const db: mongoDB.Db = client.db(process.env.DB_NAME || '');
-
-    const RestauracjaLista:mongoDB.Collection=db.collection(process.env.RESTAURACJE_COLLECTION_NAME || '')
-    DataList.Restauracje=RestauracjaLista
+    //stała tylko do odczytu
+    const RestauracjeLista:mongoDB.Collection=db.collection(process.env.RESTAURACJE_COLLECTION_NAME || '')
+    DataList.Restauracje=RestauracjeLista
 
     const PracownikLista:mongoDB.Collection=db.collection(process.env.PRACOWNIK_COLLECTION_NAME || '')
     DataList.Pracownik=PracownikLista
