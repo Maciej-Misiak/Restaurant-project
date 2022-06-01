@@ -41,7 +41,7 @@ app.get("/:id", async (req: Request, res: Response) => {
 app.post("/", async (req: Request, res: Response) => {
    try {
        const newReze = req.body as rezerwacja;
-       const result = await DataList?.Pracownik?.insertOne(newReze);
+       const result = await DataList?.Rezerwacja?.insertOne(newReze);
 
        result
            ? res.status(201).send(`Successfully created a new reservation with id ${result.insertedId}`)
@@ -60,7 +60,7 @@ app.put("/:id", async (req: Request, res: Response) => {
        const updatedReze: rezerwacja = req.body as rezerwacja ;
        const query = { _id: new ObjectId(id) };
      
-       const result = await DataList?.Pracownik?.updateOne(query, { $set: updatedReze });
+       const result = await DataList?.Rezerwacja?.updateOne(query, { $set: updatedReze });
 
        result
            ? res.status(200).send(`Successfully updated reservation with id ${id}`)

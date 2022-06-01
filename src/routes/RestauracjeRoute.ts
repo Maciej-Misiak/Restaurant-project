@@ -25,7 +25,6 @@ app.get("/:id", async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
     try {
-        
         const query = { _id: new ObjectId(id) };
         const rest = (await DataList?.Restauracje?.findOne(query)) as unknown as restauracje;
 

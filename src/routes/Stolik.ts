@@ -10,9 +10,9 @@ app.use(express.json());
 
 app.get("/", async (_req: Request, res: Response) => {
    try {
-      const prac = (await DataList?.Stolik?.find({}).toArray()) as unknown as stolik[];
+      const sto = (await DataList?.Stolik?.find({}).toArray()) as unknown as stolik[];
 
-       res.status(200).send(prac);
+       res.status(200).send(sto);
    } catch (err: unknown) {
        if (err instanceof Error) {
            res.status(500).send(err.message);  
@@ -27,7 +27,7 @@ app.get("/:id", async (req: Request, res: Response) => {
    try {
        
        const query = { _id: new ObjectId(id) };
-       const sto = (await DataList?.Pracownik?.findOne(query)) as unknown as stolik;
+       const sto = (await DataList?.Stolik?.findOne(query)) as unknown as stolik;
 
        if (sto) {
            res.status(200).send(sto);
@@ -41,8 +41,8 @@ app.get("/:id", async (req: Request, res: Response) => {
 
 app.post("/", async (req: Request, res: Response) => {
    try {
-       const newPrac = req.body as stolik;
-       const result = await DataList?.Pracownik?.insertOne(newPrac);
+       const newSto = req.body as stolik;
+       const result = await DataList?.Stolik?.insertOne(newSto);
 
        result
            ? res.status(201).send(`Successfully created a new table with id ${result.insertedId}`)
@@ -61,7 +61,7 @@ app.put("/:id", async (req: Request, res: Response) => {
        const updatedSto: stolik = req.body as stolik ;
        const query = { _id: new ObjectId(id) };
      
-       const result = await DataList?.Pracownik?.updateOne(query, { $set: updatedSto });
+       const result = await DataList?.Stolik?.updateOne(query, { $set: updatedSto });
 
        result
            ? res.status(200).send(`Successfully updated table with id ${id}`)

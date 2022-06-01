@@ -23,7 +23,6 @@ app.get("/:id", async (req: Request, res: Response) => {
    const id = req?.params?.id;
 
    try {
-    
        const query = { _id: new ObjectId(id) };
        const zam = (await DataList?.Zamowienie?.findOne(query)) as unknown as zamowienie;
 

@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.get("/", async (_req: Request, res: Response) => {
    try {
-      const prod = (await DataList?.Pracownik?.find({}).toArray()) as unknown as produkt[];
+      const prod = (await DataList?.Produkt?.find({}).toArray()) as unknown as produkt[];
 
        res.status(200).send(prod);
    } catch (err: unknown) {
@@ -41,7 +41,7 @@ app.get("/:id", async (req: Request, res: Response) => {
 app.post("/", async (req: Request, res: Response) => {
    try {
        const newProdu = req.body as produkt;
-       const result = await DataList?.Pracownik?.insertOne(newProdu);
+       const result = await DataList?.Produkt?.insertOne(newProdu);
 
        result
            ? res.status(201).send(`Successfully created a new product with id ${result.insertedId}`)
