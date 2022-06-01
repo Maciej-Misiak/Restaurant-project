@@ -4,14 +4,12 @@ import { DataList } from "../database.service";
 import zamowienie from "../models/Zamowienie"
 
 const app=express.Router();
-
 export default app;
 app.use(express.json());
 
 app.get("/", async (_req: Request, res: Response) => {
    try {
       const zam = (await DataList?.Zamowienie?.find({}).toArray()) as unknown as zamowienie[];
-
        res.status(200).send(zam);
    } catch (err: unknown) {
        if (err instanceof Error) {
@@ -25,7 +23,7 @@ app.get("/:id", async (req: Request, res: Response) => {
    const id = req?.params?.id;
 
    try {
-       
+    
        const query = { _id: new ObjectId(id) };
        const zam = (await DataList?.Zamowienie?.findOne(query)) as unknown as zamowienie;
 
