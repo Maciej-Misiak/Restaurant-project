@@ -6,7 +6,7 @@
  const app=express.Router();
 
  export default app;
- app.use(express.json);
+ app.use(express.json());
 
  app.get("/", async (_req: Request, res: Response) => {
     try {
